@@ -11,9 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     
     <style>
-        body{
-            padding: 15px;
-        }
         table{
             margin: 0 auto;
             padding: 15px;
@@ -22,30 +19,72 @@
 
 </head>
 <body>
-    <h1>Hangar da Aliança Rebelde</h1>
-    
+    <h1 class="text-center" style="background-color: #292929; color: #fff; padding: 15px;">
+        Hangar da Aliança Rebelde
+    </h1>
+
     <div class="container w-100">
-        <table class="table table-responsive">
-            <thead>
-                <tr>
-                    <td>Nome</td>
-                    <td>Descrição</td>
-                    <td>Preço</td>
-                </tr>
-            </thead>
-            <tbody class="table-striped">
-                <?php foreach($hangar as $nave) : ?>
-                <tr>
-                    <td><?= $nave["nome"] ?></td>
-                    <td><?=$nave["descricao"] ?></td>
-                    <td><?= numeroEmReais($nave["preco"]) ?></td>
-                </tr>
-                <?php endforeach ?>
-            </tbody>
-            
-        </table>
-       
+        <div class="row">
+            <div class="col-3">
+                <h2>Piloto</h2>
+                <?php
+                echo form_open("usuarios/novo");
+                
+                    echo form_label("Nome", "nome");    
+                    echo form_input(array(
+                    "name" => "nome",
+                        "id" => "nome",
+                        "class" => "form-control",
+                        "maxlength" => "255"
+                    ));
+                    
+                    echo form_label("Email", "email");
+                    echo form_input(array(
+                        "name" => "email",
+                        "id" => "email",
+                        "class" => "form-control",
+                        "maxlength" => "255"
+                    ));
+                    
+                    echo form_label("Senha", "senha");
+                    echo form_password(array(
+                        "name" => "senha",
+                        "id" => "senha",
+                        "class" => "form-control",
+                        "maxlength" => "255"
+                    ));
+                    
+                    echo form_button(array(
+                        "class" => "btn btn-primary",
+                        "content" => "Cadastrar",
+                        "type" => "submit"
+                    ));
+                    
+                echo form_close();
+                ?>        
+            </div>
+            <div class="col-9">
+                <h2>Naves</h2>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Descrição</td>
+                            <td>Preço</td>
+                        </tr>
+                    </thead>
+                    <tbody class="table-striped">
+                        <?php foreach($hangar as $nave) : ?>
+                        <tr>
+                            <td><?= $nave["nome"] ?></td>
+                            <td><?=$nave["descricao"] ?></td>
+                            <td><?= numeroEmReais($nave["preco"]) ?></td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>        
     </div>
-    
 </body> 
 </html>
