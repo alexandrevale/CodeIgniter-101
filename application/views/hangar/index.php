@@ -29,15 +29,16 @@
             <thead>
                 <tr>
                     <td>Nome</td>
+                    <td>Descrição</td>
                     <td>Preço</td>
                 </tr>
             </thead>
             <tbody class="table-striped">
                 <?php foreach($hangar as $nave) : ?>
                 <tr>
-                    <td><?=$nave["nome"] ?></td>
+                    <td><?= $nave["nome"] ?></td>
                     <td><?=$nave["descricao"] ?></td>
-                    <td><?=$nave["preco"] ?></td>
+                    <td><?= numeroEmReais($nave["preco"]) ?></td>
                 </tr>
                 <?php endforeach ?>
             </tbody>
